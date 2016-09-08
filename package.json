@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "description": "Performance companion chrome extension",
   "scripts": {
-    "default": "npm run build && npm run server & npm run watch:sass",
+    "default": "npm run build && npm run watch:scripts & npm run watch:sass",
     "build": "npm run build:scripts && npm run build:sass",
     "build:sass": "npm run sass && npm run autoprefix",
     "build:scripts": "babel src -d app",
     "sass": "sass src/app.scss app/app.css",
     "watch:sass": "sass --watch src/app.scss:app/app.css",
+    "watch:scripts": "babel src/app.js --watch --out-file app/app.js",
     "autoprefix": "echo 'WARNING: autoprefixer not configured'",
     "server": "echo 'WARNING: server not configured'"
   },
