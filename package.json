@@ -1,0 +1,32 @@
+{
+  "name": "perf-companion",
+  "version": "0.1.0",
+  "description": "Performance companion chrome extension",
+  "scripts": {
+    "default": "npm run build && npm run server & npm run watch:sass",
+    "build": "npm run build:scripts && npm run build:sass",
+    "build:sass": "npm run sass && npm run autoprefix",
+    "build:scripts": "babel src -d app",
+    "sass": "sass src/app.scss app/app.css",
+    "watch:sass": "sass --watch src/app.scss:app/app.css",
+    "autoprefix": "echo 'WARNING: autoprefixer not configured'",
+    "server": "echo 'WARNING: server not configured'"
+  },
+  "author": "Adam Waselnuk",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "perf",
+    "performance"
+  ],
+  "bugs": {
+    "url": ""
+  }
+}

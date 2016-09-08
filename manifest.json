@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Perf companion",
+  "description": "This extension makes web performance more accessible.",
+  "version": "0.1",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "PERF ME!"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
