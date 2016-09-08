@@ -10,8 +10,7 @@
     "sass": "sass src/app.scss app/app.css",
     "watch:sass": "sass --watch src/app.scss:app/app.css",
     "watch:scripts": "babel src/app.js --watch --out-file app/app.js",
-    "autoprefix": "echo 'WARNING: autoprefixer not configured'",
-    "server": "echo 'WARNING: server not configured'"
+    "autoprefix": "echo 'WARNING: autoprefixer not configured'"
   },
   "author": "Adam Waselnuk",
   "license": "ISC",
