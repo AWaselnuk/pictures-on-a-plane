@@ -1,6 +1,6 @@
 'use strict';
 
-var images = document.getElementsByTagName('img');
+var images = document.querySelectorAll('img');
 var imageSrcs = Array.from(images).map(function (img) {
   return img.src;
 });

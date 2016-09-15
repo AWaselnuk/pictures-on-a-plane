@@ -1,25 +1,11 @@
-function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
+console.log('Launching app');
+
+chrome.devtools.panels.create(
+  "Perf Companion",
+  "icon.png",
+  "panel.html",
+  (panel) => {
+    // code invoked on panel creation
+    console.log('It is alive!');
   }
-}
-
-function main() {
-  const runButton = document.getElementById('run');
-
-  runButton.addEventListener('click', function() {
-    chrome.tabs.executeScript(null, {file: "app/content_script.js"});
-  });
-
-  function handleMessage(request, sender, sendResponse) {
-    console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
-    console.log(request.images);
-    sendResponse({result: "images received"});
-  }
-
-  chrome.runtime.onMessage.addListener(handleMessage);
-}
-
-ready(main);
+);
