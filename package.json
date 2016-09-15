@@ -1,7 +1,7 @@
 {
-  "name": "perf-companion",
+  "name": "pictures-on-a-plane",
   "version": "0.1.0",
-  "description": "Performance companion chrome extension",
+  "description": "Pictures on a plane chrome devtools extension",
   "scripts": {
     "default": "npm run build && npm run watch:scripts & npm run watch:sass",
     "build": "npm run build:scripts && npm run build:sass",
@@ -24,7 +24,10 @@
   },
   "keywords": [
     "perf",
-    "performance"
+    "performance",
+    "images",
+    "devtools",
+    "chrome"
   ],
   "bugs": {
     "url": ""

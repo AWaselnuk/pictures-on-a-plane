@@ -1,7 +1,7 @@
 console.log('Launching app');
 
 chrome.devtools.panels.create(
-  "Perf Companion",
+  "Pictures on a plane",
   "icon.png",
   "panel.html",
   (panel) => {

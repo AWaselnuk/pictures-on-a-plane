@@ -1,6 +1,6 @@
-# Perf companion
+# Pictures on a plane
 
-A chrome extension that helps make performance more accessible for everyone.
+A chrome dev tools extension that helps make performance more accessible for everyone.
 
 ## Get Started
 

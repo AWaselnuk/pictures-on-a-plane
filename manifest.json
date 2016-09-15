@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Perf Companion",
+  "name": "Pictures on a plane",
   "description": "This extension makes web performance more accessible.",
   "version": "0.1",
   "devtools_page": "devtools.html",
