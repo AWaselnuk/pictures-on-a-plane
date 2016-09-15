@@ -7,7 +7,8 @@ html {
 body {
   margin: 0;
   font-size: 1.6rem;
-  font-family: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif; }
+  font-family: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
+  color: #232323; }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
@@ -60,8 +61,8 @@ button:hover {
 .sidebar {
   flex-basis: 25vw;
   height: 100vh;
-  background-color: #eee;
-  border-right: 1px solid #999; }
+  background-color: #EDEDED;
+  border-right: 1px solid #888883; }
 
 .main {
   display: flex;
@@ -71,19 +72,19 @@ button:hover {
 .main__info {
   flex-basis: 50px;
   padding: 1rem;
-  border-bottom: 1px solid #999; }
+  border-bottom: 1px solid #888883; }
 
 .main__content {
   padding: 1rem; }
 
 .btn {
-  padding: 0.5em 0.75em;
+  background-color: #E55627;
   color: #fff;
-  background-color: #D16014;
+  padding: 0.5em 0.75em;
   font-size: 1.6rem;
   line-height: 2rem; }
   .btn:hover {
-    background-color: #D16014; }
+    background-color: #E55627; }
 
 .centered {
   position: relative;
@@ -122,6 +123,37 @@ button:hover {
     animation-delay: 8.4s; }
   .scroll-text__item:nth-child(8) {
     animation-delay: 9.6s; }
+
+.category {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; }
+
+.category-item {
+  position: relative;
+  padding: 1rem;
+  flex: 1 1 auto;
+  border-top: 1px solid #888883;
+  background-color: #EDEDED;
+  transition: background-color 0.2s ease; }
+  .category-item:first-child {
+    border-top: none; }
+  .category-item:hover {
+    cursor: pointer; }
+  .category-item:hover, .category-item.active {
+    background-color: #CCC9C6; }
+
+.category-item__badge {
+  background-color: #E55627;
+  color: #fff;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  text-align: center; }
 
 @keyframes scroll-text {
   0% {

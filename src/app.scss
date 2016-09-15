@@ -3,16 +3,36 @@
 $font-family-sans: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
 $base-font-size: 1.6rem;
 $font-size-large: 1.8rem;
+$font-size-small: 1.2rem;
 
 $base-line-height: 2.0rem;
 $spacing: 1.0rem;
 
-$color-main: #D16014;
-$color-white: #fff;
-$color-light-gray: #eee;
-$color-dark-gray: #999;
+$transition-timing: 0.2s;
 
-$border: 1px solid $color-dark-gray;
+$color-main: #E55627;
+$color-white: #fff;
+
+$greys: (
+  lightest: #EDEDED,
+  lighter:  #E0E1E0,
+  light:    #CCC9C6,
+  mid:      #888883,
+  dark:     #585753,
+  darker:   #363634,
+  darkest:  #232323
+);
+
+@function color-grey($scale) {
+  @return map-get($greys, $scale)
+}
+
+@mixin bg-color-main {
+  background-color: $color-main;
+  color: $color-white;
+}
+
+$border: 1px solid color-grey(mid);
 
 // Setup
 
@@ -28,6 +48,7 @@ body {
   margin: 0;
   font-size: $base-font-size;
   font-family: $font-family-sans;
+  color: color-grey(darkest);
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -93,7 +114,7 @@ button:hover {
 .sidebar {
   flex-basis: 25vw;
   height: 100vh;
-  background-color: $color-light-gray;
+  background-color: color-grey(lightest);
   border-right: $border;
 }
 
@@ -116,9 +137,8 @@ button:hover {
 // Components
 
 .btn {
+  @include bg-color-main;
   padding: 0.5em 0.75em;
-  color: $color-white;
-  background-color: $color-main;
   font-size: $base-font-size;
   line-height: $base-line-height;
 
@@ -172,6 +192,48 @@ $scrollTextAnimationDuration: 1.2s;
     }
   }
 }
+
+.category {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.category-item {
+  position: relative;
+  padding: $spacing;
+  flex: 1 1 auto;
+  border-top: $border;
+  background-color: color-grey(lightest);
+  transition: background-color $transition-timing ease;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover,
+  &.active {
+    background-color: color-grey(light);
+  }
+}
+
+.category-item__badge {
+  @include bg-color-main;
+  position: absolute;
+  top: $spacing;
+  right: $spacing;
+  width: $spacing * 2;
+  height: $spacing * 2;
+  line-height: $spacing * 2;
+  font-size: $font-size-small;
+  text-align: center;
+}
+
+// Animations
 
 @keyframes scroll-text {
   0% {
