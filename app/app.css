@@ -1,4 +1,61 @@
+* {
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
 body {
-  font-size: 14px; }
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif; }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  margin-bottom: 2rem; }
+
+p {
+  line-height: 2rem; }
+
+button,
+button:hover,
+button:active,
+button:focus,
+input[type="submit"],
+input[type="submit"]:hover,
+input[type="submit"]:active,
+input[type="submit"]:focus {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0; }
+
+button:hover {
+  cursor: pointer; }
+
+.text-center {
+  text-align: center; }
+
+.btn {
+  padding: 0.5em 0.75em;
+  color: #fff;
+  background-color: #D16014;
+  font-size: 1.6rem;
+  line-height: 2rem; }
+  .btn:hover {
+    background-color: #D16014; }
+
+.centered {
+  position: relative;
+  height: 100vh;
+  width: 100vw; }
+
+.centered__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.centered__content--intro {
+  max-width: 400px; }
 
 /*# sourceMappingURL=app.css.map */

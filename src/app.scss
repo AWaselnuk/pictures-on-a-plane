@@ -1,5 +1,89 @@
-$thing: 14px;
+// Variables
+
+$font-family-sans: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
+$base-font-size: 1.6rem;
+$base-line-height: 2.0rem;
+$spacing: 1.0rem;
+
+$color-main: #D16014;
+$color-white: #fff;
+
+// Setup
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
 
 body {
-  font-size: $thing;
+  margin: 0;
+  font-size: $base-font-size;
+  font-family: $font-family-sans;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  margin-bottom: $base-line-height;
+}
+
+p {
+  line-height: $base-line-height;
+}
+
+button,
+button:hover,
+button:active,
+button:focus,
+input[type="submit"],
+input[type="submit"]:hover,
+input[type="submit"]:active,
+input[type="submit"]:focus {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+// Utilities
+
+.text-center {
+  text-align: center;
+}
+
+// Components
+
+.btn {
+  padding: 0.5em 0.75em;
+  color: $color-white;
+  background-color: $color-main;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+
+  &:hover {
+    background-color: $color-main;
+  }
+}
+
+.centered {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.centered__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centered__content--intro {
+  max-width: 400px;
 }
