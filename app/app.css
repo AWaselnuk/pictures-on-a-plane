@@ -38,6 +38,44 @@ button:hover {
 .hidden {
   display: none !important; }
 
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0; }
+
+.list-reset {
+  margin: 0;
+  padding: 0; }
+  .list-reset li {
+    list-style: none; }
+
+.flex-container {
+  display: flex; }
+
+.sidebar {
+  flex-basis: 25vw;
+  height: 100vh;
+  background-color: #eee;
+  border-right: 1px solid #999; }
+
+.main {
+  display: flex;
+  width: 100%;
+  flex-direction: column; }
+
+.main__info {
+  flex-basis: 50px;
+  padding: 1rem;
+  border-bottom: 1px solid #999; }
+
+.main__content {
+  padding: 1rem; }
+
 .btn {
   padding: 0.5em 0.75em;
   color: #fff;
@@ -61,17 +99,13 @@ button:hover {
 .centered__content--intro {
   max-width: 400px; }
 
-.scroll-text {
-  margin: 0;
-  padding: 0; }
-  .scroll-text.js-animate .scroll-text__item {
-    animation-name: scroll-text;
-    animation-duration: 1.2s; }
-  .scroll-text.js-animate .scroll-text__item:first-child {
-    animation-name: scroll-text-first-child; }
+.scroll-text.js-animate .scroll-text__item {
+  animation-name: scroll-text;
+  animation-duration: 1.2s; }
+.scroll-text.js-animate .scroll-text__item:first-child {
+  animation-name: scroll-text-first-child; }
 
 .scroll-text__item {
-  list-style: none;
   opacity: 0;
   font-size: 1.8rem; }
   .scroll-text__item:nth-child(2) {

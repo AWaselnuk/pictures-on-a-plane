@@ -15,7 +15,7 @@ function main() {
 
   function animateScrollText() {
     const $scrollTextDuration =
-      $scrollText.find('.scroll-text__item').length * 1 * 1000 + 1000;
+      $scrollText.find('.scroll-text__item').length * 1.2 * 1000 + 1000;
 
     const promise = new Promise((resolve, reject) => {
       $scrollText.addClass('js-animate');

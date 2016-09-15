@@ -10,7 +10,7 @@
     <script src="app/panel.js"></script>
   </head>
   <body>
-    <section id="sectionIntro" class="section centered">
+    <section id="sectionIntro" class="section centered hidden">
       <div class="centered__content centered__content--intro text-center">
         <h1>Pictures on a plane</h1>
         <p>Welcome to the beauty of pictures on a plane.</p>
@@ -20,7 +20,7 @@
 
     <section id="sectionLoading" class="section centered hidden">
       <div class="centered__content">
-        <ul class="scroll-text text-center">
+        <ul class="scroll-text list-reset text-center">
           <li class="scroll-text__item">Clearing snakes ...</li>
           <li class="scroll-text__item">Fueling engines ...</li>
           <li class="scroll-text__item">Finding not fast images ...</li>
@@ -30,8 +30,22 @@
       </div>
     </section>
 
-    <section id="sectionResults" class="section hidden">
-      <h2>Results</h2>
+    <section id="sectionResults" class="section flex-container">
+      <div class="sidebar">
+        <h2 class="visually-hidden">Image categories</h2>
+      </div>
+      <div class="main flex-container">
+        <div class="main__info">
+          <h2 class="info-title">Cars</h2>
+        </div>
+
+        <div class="main__content">
+          <h2 class="content-title">Images</h2>
+          <ol id="images" class="images list-reset">
+            <!-- Images will go here -->
+          </ol>
+        </div>
+      </div>
     </section>
   </body>
 </html>

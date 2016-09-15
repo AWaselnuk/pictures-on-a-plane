@@ -9,6 +9,10 @@ $spacing: 1.0rem;
 
 $color-main: #D16014;
 $color-white: #fff;
+$color-light-gray: #eee;
+$color-dark-gray: #999;
+
+$border: 1px solid $color-dark-gray;
 
 // Setup
 
@@ -63,6 +67,52 @@ button:hover {
   display: none !important;
 }
 
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+// Main Layout
+
+.flex-container {
+  display: flex;
+}
+
+.sidebar {
+  flex-basis: 25vw;
+  height: 100vh;
+  background-color: $color-light-gray;
+  border-right: $border;
+}
+
+.main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.main__info {
+  flex-basis: 50px;
+  padding: $spacing;
+  border-bottom: $border;
+}
+
+.main__content {
+  padding: $spacing;
+}
+
 // Components
 
 .btn {
@@ -102,9 +152,6 @@ $scrollTextDistance: 50px;
 $scrollTextAnimationDuration: 1.2s;
 
 .scroll-text {
-  margin: 0;
-  padding: 0;
-
   &.js-animate .scroll-text__item {
     animation-name: scroll-text;
     animation-duration: $scrollTextAnimationDuration;
@@ -116,7 +163,6 @@ $scrollTextAnimationDuration: 1.2s;
 }
 
 .scroll-text__item {
-  list-style: none;
   opacity: 0;
   font-size: $font-size-large;
 
