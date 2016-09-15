@@ -1,6 +1,6 @@
 # Pictures on a plane
 
-A chrome dev tools extension that helps make performance more accessible for everyone.
+A chrome dev tools extension that helps make performance more accessible for designers.
 
 ## Get Started
 

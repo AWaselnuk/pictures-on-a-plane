@@ -5,10 +5,33 @@
 
 // Main
 
+// HAR Entry -> Boolean
+function isImageType(HARentry) {
+  return HARentry.response && (HARentry.response.content.mimeType == 'image/jpeg' || HARentry.response.content.mimeType == 'image/jpeg');
+}
+
+// HAR Entry -> Image
+function toImage(HARentry) {
+  return {
+    time: HARentry.time,
+    url: HARentry.request.url,
+    size: HARentry.response.content.size,
+    mimeType: HARentry.response.content.mimeType
+  };
+}
+
 function main() {
   var $runButton = $('#run');
   var $sections = $('.section');
   var $scrollText = $('.scroll-text');
+  var $imagesContainer = $('#images');
+  var HARTestData = getSampleHAR();
+  var entries = HARTestData.entries;
+  var images = entries.filter(function (entry) {
+    return isImageType(entry);
+  }).map(function (entry) {
+    return toImage(entry);
+  });
 
   function transitionToSection(sectionName) {
     $sections.addClass('hidden');
@@ -34,11 +57,16 @@ function main() {
     //   log(getSampleHAR());
     // });
 
+    // Transition to results screen
     transitionToSection('sectionLoading');
     animateScrollText().then(function () {
       return transitionToSection('sectionResults');
     });
   });
+
+  // Spit out HAR data
+  log(images);
+  $imagesContainer.html('<pre><code>' + JSON.stringify(images, null, 2) + '</code></pre>');
 }
 
 // Init
