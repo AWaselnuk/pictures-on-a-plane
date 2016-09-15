@@ -6,13 +6,37 @@
 // Main
 
 function main() {
-  var runButton = document.getElementById('run');
+  var $runButton = $('#run');
+  var $sections = $('.section');
+  var $scrollText = $('.scroll-text');
 
-  runButton.addEventListener('click', function () {
+  function transitionToSection(sectionName) {
+    $sections.addClass('hidden');
+    $sections.filter('#' + sectionName).removeClass('hidden');
+  }
+
+  function animateScrollText() {
+    var $scrollTextDuration = $scrollText.find('.scroll-text__item').length * 1 * 1000 + 1000;
+
+    var promise = new Promise(function (resolve, reject) {
+      $scrollText.addClass('js-animate');
+      window.setTimeout(function () {
+        return resolve();
+      }, $scrollTextDuration);
+    });
+
+    return promise;
+  }
+
+  $runButton.on('click', function () {
     // HAR spec http://www.softwareishard.com/blog/har-12-spec/
-    chrome.devtools.network.getHAR(function (harLog) {
+    // chrome.devtools.network.getHAR((harLog) => {
+    //   log(getSampleHAR());
+    // });
 
-      log(getSampleHAR());
+    transitionToSection('sectionLoading');
+    animateScrollText().then(function () {
+      return transitionToSection('sectionResults');
     });
   });
 }

@@ -4,18 +4,35 @@
   <head>
     <title>Pictures on a plane</title>
     <link rel="stylesheet" type="text/css" href="app/app.css">
+    <script src="app/jquery-3.1.0.min.js"></script>
     <script src="app/sample-data.js"></script>
     <script src="app/utilities.js"></script>
     <script src="app/panel.js"></script>
   </head>
   <body>
-    <div class="centered">
+    <section id="sectionIntro" class="section centered">
       <div class="centered__content centered__content--intro text-center">
         <h1>Pictures on a plane</h1>
         <p>Welcome to the beauty of pictures on a plane.</p>
         <button id="run" class="btn btn-primary">Get started</button>
       </div>
-    </div>
+    </section>
+
+    <section id="sectionLoading" class="section centered hidden">
+      <div class="centered__content">
+        <ul class="scroll-text text-center">
+          <li class="scroll-text__item">Clearing snakes ...</li>
+          <li class="scroll-text__item">Fueling engines ...</li>
+          <li class="scroll-text__item">Finding not fast images ...</li>
+          <li class="scroll-text__item">Inserting poorly drawn safety pamphlets ...</li>
+          <li class="scroll-text__item">Looking to the skies ...</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sectionResults" class="section hidden">
+      <h2>Results</h2>
+    </section>
   </body>
 </html>
 

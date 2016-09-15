@@ -4,14 +4,36 @@
 // Main
 
 function main() {
-  const runButton = document.getElementById('run');
+  const $runButton = $('#run');
+  const $sections = $('.section');
+  const $scrollText = $('.scroll-text');
 
-  runButton.addEventListener('click', () => {
-    // HAR spec http://www.softwareishard.com/blog/har-12-spec/
-    chrome.devtools.network.getHAR((harLog) => {
+  function transitionToSection(sectionName) {
+    $sections.addClass('hidden');
+    $sections.filter(`#${sectionName}`).removeClass('hidden');
+  }
 
-      log(getSampleHAR());
+  function animateScrollText() {
+    const $scrollTextDuration =
+      $scrollText.find('.scroll-text__item').length * 1 * 1000 + 1000;
+
+    const promise = new Promise((resolve, reject) => {
+      $scrollText.addClass('js-animate');
+      window.setTimeout(() => resolve(), $scrollTextDuration);
     });
+
+    return promise;
+  }
+
+  $runButton.on('click', () => {
+    // HAR spec http://www.softwareishard.com/blog/har-12-spec/
+    // chrome.devtools.network.getHAR((harLog) => {
+    //   log(getSampleHAR());
+    // });
+
+    transitionToSection('sectionLoading');
+    animateScrollText()
+      .then(() => transitionToSection('sectionResults'));
   });
 }
 

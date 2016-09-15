@@ -35,6 +35,9 @@ button:hover {
 .text-center {
   text-align: center; }
 
+.hidden {
+  display: none !important; }
+
 .btn {
   padding: 0.5em 0.75em;
   color: #fff;
@@ -57,5 +60,57 @@ button:hover {
 
 .centered__content--intro {
   max-width: 400px; }
+
+.scroll-text {
+  margin: 0;
+  padding: 0; }
+  .scroll-text.js-animate .scroll-text__item {
+    animation-name: scroll-text;
+    animation-duration: 1.2s; }
+  .scroll-text.js-animate .scroll-text__item:first-child {
+    animation-name: scroll-text-first-child; }
+
+.scroll-text__item {
+  list-style: none;
+  opacity: 0;
+  font-size: 1.8rem; }
+  .scroll-text__item:nth-child(2) {
+    animation-delay: 2.4s; }
+  .scroll-text__item:nth-child(3) {
+    animation-delay: 3.6s; }
+  .scroll-text__item:nth-child(4) {
+    animation-delay: 4.8s; }
+  .scroll-text__item:nth-child(5) {
+    animation-delay: 6s; }
+  .scroll-text__item:nth-child(6) {
+    animation-delay: 7.2s; }
+  .scroll-text__item:nth-child(7) {
+    animation-delay: 8.4s; }
+  .scroll-text__item:nth-child(8) {
+    animation-delay: 9.6s; }
+
+@keyframes scroll-text {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); }
+  25% {
+    opacity: 1;
+    transform: translateY(0); }
+  75% {
+    opacity: 1;
+    transform: translateY(0); }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px); } }
+@keyframes scroll-text-first-child {
+  0% {
+    opacity: 1;
+    transform: translateY(0); }
+  75% {
+    opacity: 1;
+    transform: translateY(0); }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px); } }
 
 /*# sourceMappingURL=app.css.map */

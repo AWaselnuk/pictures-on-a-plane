@@ -2,6 +2,8 @@
 
 $font-family-sans: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
 $base-font-size: 1.6rem;
+$font-size-large: 1.8rem;
+
 $base-line-height: 2.0rem;
 $spacing: 1.0rem;
 
@@ -57,6 +59,10 @@ button:hover {
   text-align: center;
 }
 
+.hidden {
+  display: none !important;
+}
+
 // Components
 
 .btn {
@@ -69,6 +75,10 @@ button:hover {
   &:hover {
     background-color: $color-main;
   }
+}
+
+.section {
+
 }
 
 .centered {
@@ -86,4 +96,72 @@ button:hover {
 
 .centered__content--intro {
   max-width: 400px;
+}
+
+$scrollTextDistance: 50px;
+$scrollTextAnimationDuration: 1.2s;
+
+.scroll-text {
+  margin: 0;
+  padding: 0;
+
+  &.js-animate .scroll-text__item {
+    animation-name: scroll-text;
+    animation-duration: $scrollTextAnimationDuration;
+  }
+
+  &.js-animate .scroll-text__item:first-child {
+    animation-name: scroll-text-first-child;
+  }
+}
+
+.scroll-text__item {
+  list-style: none;
+  opacity: 0;
+  font-size: $font-size-large;
+
+  @for $i from 2 through 8 {
+    &:nth-child(#{$i}) {
+      animation-delay: $scrollTextAnimationDuration * $i;
+    }
+  }
+}
+
+@keyframes scroll-text {
+  0% {
+    opacity: 0;
+    transform: translateY($scrollTextDistance);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-$scrollTextDistance);
+  }
+}
+
+@keyframes scroll-text-first-child {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-$scrollTextDistance);
+  }
 }
