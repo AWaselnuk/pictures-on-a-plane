@@ -1,5 +1,8 @@
 'use strict';
 
+// Random code snippets created while learning about extensions
+
+// example popup
 function popUpMain() {
   var runButton = document.getElementById('run');
 
@@ -15,3 +18,14 @@ function popUpMain() {
 
   chrome.runtime.onMessage.addListener(handleMessage);
 }
+
+// example content script
+
+var images = document.querySelectorAll('img');
+var imageSrcs = Array.from(images).map(function (img) {
+  return img.src;
+});
+
+chrome.runtime.sendMessage({ images: imageSrcs }, function (response) {
+  console.dir(response);
+});

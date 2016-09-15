@@ -1,3 +1,6 @@
+// Random code snippets created while learning about extensions
+
+// example popup
 function popUpMain() {
   const runButton = document.getElementById('run');
 
@@ -13,3 +16,12 @@ function popUpMain() {
 
   chrome.runtime.onMessage.addListener(handleMessage);
 }
+
+// example content script
+
+const images = document.querySelectorAll('img');
+const imageSrcs = Array.from(images).map(function (img) { return img.src });
+
+chrome.runtime.sendMessage({images: imageSrcs}, function(response) {
+  console.dir(response);
+});
