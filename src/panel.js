@@ -27,10 +27,15 @@ function isImageType(HARentry) {
 // HAR Entry for image -> CategorizedImage
 function toCategorizedImage(HARentry) {
   const imageSize = HARentry.response.content.size;
+  const path = (() => {
+    const splitURL = HARentry.request.url.split("/");
+    return splitURL[splitURL.length - 1];
+  })();
 
   return {
     time: HARentry.time,
     url: HARentry.request.url,
+    path: path,
     size: imageSize,
     category: categoryForImageSize(imageSize),
     mimeType: HARentry.response.content.mimeType
@@ -58,7 +63,10 @@ function categoryForImageSize(imageSize) {
 
 // Image -> HTML
 function imageHTML(image) {
-  return `<li>${image.size} | ${image.url}, ${image.category}</li>`;
+  return `<li class="image-item" data-image-url="${image.url}">
+    <b class="inline-title">SIZE</b> ${image.size}<br>
+    <b class="inline-title">URL</b> ${image.path}
+  </li>`;
 }
 
 // CategoryData -> HTML
@@ -112,6 +120,12 @@ function main() {
     $body.attr('class', `active-category-${category}`);
   }
 
+  function updateImageCounts(categoryData) {
+    categoryData.forEach((category) => {
+      $(`.category-item__badge--${category.label}`).html(category.imageCount);
+    });
+  }
+
   $body.on('click', '.category-item', (evt) => {
     setCategory($(evt.target).data('category'));
   });
@@ -153,18 +167,10 @@ function main() {
       }
     });
 
-  // const imagesHTML =
-  //   CATEGORIES.map((category) => {
-  //     return `<ol class="list-reset has-category has-category--${category}">
-  //       ${images
-  //           .filter((image) => image.category === category)
-  //           .sort((a, b) => b.size - a.size)
-  //           .map(imageToLi)
-  //           .join("\n")
-  //       }
-  //     </ol>`;
-  //   });
   $imagesContainer.html(imagesHTML);
+
+  updateImageCounts(categoryData);
+
   setCategory('scooter');
 }
 

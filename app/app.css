@@ -6,16 +6,26 @@ html {
 
 body {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-family: -apple-system, "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
-  color: #232323; }
+  color: #363634; }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   margin-bottom: 2rem; }
 
+h1, h2 {
+  font-size: 1.8rem; }
+
 p {
   line-height: 2rem; }
+
+.inline-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888883; }
 
 button,
 button:hover,
@@ -83,7 +93,7 @@ button:hover {
   background-color: #E55627;
   color: #fff;
   padding: 0.5em 0.75em;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 2rem; }
   .btn:hover {
     background-color: #E55627; }
@@ -154,11 +164,18 @@ button:hover {
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: center; }
 
 .has-category {
   display: none; }
+
+.image-item {
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 3px solid #EDEDED; }
+  .image-item:hover {
+    border-left-color: #CCC9C6;
+    background-color: #EDEDED; }
 
 .active-category-scooter .has-category--scooter {
   display: block; }
