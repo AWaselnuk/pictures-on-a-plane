@@ -4,6 +4,9 @@
   "description": "This extension makes web performance more accessible.",
   "version": "0.1",
   "devtools_page": "devtools.html",
+  "background": {
+    "scripts": ["app/background.js"]
+  },
   "permissions": [
     "tabs",
     "http://*/*",

@@ -174,7 +174,18 @@ function categoryHTML(category) {
   </ol>`;
 }
 
+// Background page wiring
 
+const backgroundPageConnection = chrome.runtime.connect();
+
+backgroundPageConnection.onMessage.addListener((message) => {
+  log(message);
+});
+
+chrome.runtime.sendMessage({
+  tabId: chrome.devtools.inspectedWindow.tabId,
+  scriptToInject: 'content-script.js'
+});
 
 // Init
 

@@ -158,6 +158,19 @@ function categoryHTML(category) {
   }).map(imageHTML).join("\n") + '\n  </ol>';
 }
 
+// Background page wiring
+
+var backgroundPageConnection = chrome.runtime.connect();
+
+backgroundPageConnection.onMessage.addListener(function (message) {
+  log(message);
+});
+
+chrome.runtime.sendMessage({
+  tabId: chrome.devtools.inspectedWindow.tabId,
+  scriptToInject: 'content-script.js'
+});
+
 // Init
 
 $(main);
