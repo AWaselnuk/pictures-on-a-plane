@@ -46,6 +46,23 @@ function categoryForImageSize(imageSize) {
   }
 }
 
+// Image -> HTML
+function imageHTML(image) {
+  return '<li>' + image.size + ' | ' + image.url + ', ' + image.category + '</li>';
+}
+
+// CategoryData -> HTML
+function emptyCategoryHTML(category) {
+  return '<p class="has-category has-category--' + category.label + '">\n      You have no images in the ' + category.label + ' category.\n    </p>';
+}
+
+// CategoryData -> HTML
+function categoryHTML(category) {
+  return '<ol class="list-reset has-category has-category--' + category.label + '">\n    ' + category.images.sort(function (a, b) {
+    return b.size - a.size;
+  }).map(imageHTML).join("\n") + '\n  </ol>';
+}
+
 function main() {
   var $body = $('body');
   var $runButton = $('#run');
@@ -78,10 +95,6 @@ function main() {
     return promise;
   }
 
-  function imageToLi(image) {
-    return '<li>' + image.size + ' | ' + image.url + ', ' + image.category + '</li>';
-  }
-
   function setCategory(category) {
     $body.attr('class', 'active-category-' + category);
   }
@@ -106,13 +119,39 @@ function main() {
   // Spit out HAR data
   log(images);
 
-  var imagesHTML = CATEGORIES.map(function (category) {
-    return '<ol class="list-reset has-category has-category--' + category + '">\n        ' + images.filter(function (image) {
+  var categoryData = CATEGORIES.map(function (category) {
+    var imagesForCategory = images.filter(function (image) {
       return image.category === category;
-    }).sort(function (a, b) {
-      return b.size - a.size;
-    }).map(imageToLi).join("\n") + '\n      </ol>';
+    });
+
+    return {
+      label: category,
+      imageCount: imagesForCategory.length,
+      images: imagesForCategory
+    };
   });
+
+  log(categoryData);
+
+  var imagesHTML = categoryData.map(function (category) {
+    if (category.imageCount === 0) {
+      return emptyCategoryHTML(category);
+    } else {
+      return categoryHTML(category);
+    }
+  });
+
+  // const imagesHTML =
+  //   CATEGORIES.map((category) => {
+  //     return `<ol class="list-reset has-category has-category--${category}">
+  //       ${images
+  //           .filter((image) => image.category === category)
+  //           .sort((a, b) => b.size - a.size)
+  //           .map(imageToLi)
+  //           .join("\n")
+  //       }
+  //     </ol>`;
+  //   });
   $imagesContainer.html(imagesHTML);
   setCategory('scooter');
 }
