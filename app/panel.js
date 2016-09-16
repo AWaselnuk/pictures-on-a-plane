@@ -1,7 +1,93 @@
 'use strict';
 
-// import { log, domReady } from 'utilities';
+// import { log } from 'utilities';
 // import { getSampleHAR } from 'sample-data';
+
+function main() {
+  var $body = $('body');
+  var $runButton = $('#run');
+  var $sections = $('.section');
+  var $scrollText = $('.scroll-text');
+  var $imagesContainer = $('#images');
+  var HARTestData = getSampleHAR();
+  var entries = HARTestData.entries;
+  var images = entries.filter(function (entry) {
+    return isImageType(entry);
+  }).map(function (entry) {
+    return toCategorizedImage(entry);
+  });
+
+  var categoryData = CATEGORIES.map(function (category) {
+    var imagesForCategory = images.filter(function (image) {
+      return image.category === category;
+    });
+
+    return {
+      label: category,
+      imageCount: imagesForCategory.length,
+      images: imagesForCategory
+    };
+  });
+
+  var imagesHTML = categoryData.map(function (category) {
+    if (category.imageCount === 0) {
+      return emptyCategoryHTML(category);
+    } else {
+      return categoryHTML(category);
+    }
+  });
+
+  function transitionToSection(sectionName) {
+    $sections.addClass('hidden');
+    $sections.filter('#' + sectionName).removeClass('hidden');
+  }
+
+  function animateScrollText() {
+    var $scrollTextDuration = $scrollText.find('.scroll-text__item').length * 1.2 * 1000 + 1000;
+
+    var promise = new Promise(function (resolve, reject) {
+      $scrollText.addClass('js-animate');
+      window.setTimeout(function () {
+        return resolve();
+      }, $scrollTextDuration);
+    });
+
+    return promise;
+  }
+
+  function setCategory(category) {
+    $body.attr('class', 'active-category-' + category);
+  }
+
+  function updateImageCounts(categoryData) {
+    categoryData.forEach(function (category) {
+      $('.category-item__badge--' + category.label).html(category.imageCount);
+    });
+  }
+
+  $body.on('click', '.category-item', function (evt) {
+    setCategory($(evt.target).data('category'));
+  });
+
+  $runButton.on('click', function () {
+    // HAR spec http://www.softwareishard.com/blog/har-12-spec/
+    // chrome.devtools.network.getHAR((harLog) => {
+    //   log(getSampleHAR());
+    // });
+
+    // Transition to results screen
+    transitionToSection('sectionLoading');
+    animateScrollText().then(function () {
+      return transitionToSection('sectionResults');
+    });
+
+    // TODO: below steps to here
+  });
+
+  $imagesContainer.html(imagesHTML);
+  updateImageCounts(categoryData);
+  setCategory('scooter');
+}
 
 var CATEGORIES = ['scooter', 'bicycle', 'car', 'train', 'airplane', 'spaceship', 'teleportation'];
 
@@ -72,97 +158,6 @@ function categoryHTML(category) {
   }).map(imageHTML).join("\n") + '\n  </ol>';
 }
 
-function main() {
-  var $body = $('body');
-  var $runButton = $('#run');
-  var $sections = $('.section');
-  var $scrollText = $('.scroll-text');
-  var $imagesContainer = $('#images');
-  var HARTestData = getSampleHAR();
-  var entries = HARTestData.entries;
-  var images = entries.filter(function (entry) {
-    return isImageType(entry);
-  }).map(function (entry) {
-    return toCategorizedImage(entry);
-  });
-
-  function transitionToSection(sectionName) {
-    $sections.addClass('hidden');
-    $sections.filter('#' + sectionName).removeClass('hidden');
-  }
-
-  function animateScrollText() {
-    var $scrollTextDuration = $scrollText.find('.scroll-text__item').length * 1.2 * 1000 + 1000;
-
-    var promise = new Promise(function (resolve, reject) {
-      $scrollText.addClass('js-animate');
-      window.setTimeout(function () {
-        return resolve();
-      }, $scrollTextDuration);
-    });
-
-    return promise;
-  }
-
-  function setCategory(category) {
-    $body.attr('class', 'active-category-' + category);
-  }
-
-  function updateImageCounts(categoryData) {
-    categoryData.forEach(function (category) {
-      $('.category-item__badge--' + category.label).html(category.imageCount);
-    });
-  }
-
-  $body.on('click', '.category-item', function (evt) {
-    setCategory($(evt.target).data('category'));
-  });
-
-  $runButton.on('click', function () {
-    // HAR spec http://www.softwareishard.com/blog/har-12-spec/
-    // chrome.devtools.network.getHAR((harLog) => {
-    //   log(getSampleHAR());
-    // });
-
-    // Transition to results screen
-    transitionToSection('sectionLoading');
-    animateScrollText().then(function () {
-      return transitionToSection('sectionResults');
-    });
-  });
-
-  // Spit out HAR data
-  log(images);
-
-  var categoryData = CATEGORIES.map(function (category) {
-    var imagesForCategory = images.filter(function (image) {
-      return image.category === category;
-    });
-
-    return {
-      label: category,
-      imageCount: imagesForCategory.length,
-      images: imagesForCategory
-    };
-  });
-
-  log(categoryData);
-
-  var imagesHTML = categoryData.map(function (category) {
-    if (category.imageCount === 0) {
-      return emptyCategoryHTML(category);
-    } else {
-      return categoryHTML(category);
-    }
-  });
-
-  $imagesContainer.html(imagesHTML);
-
-  updateImageCounts(categoryData);
-
-  setCategory('scooter');
-}
-
 // Init
 
-domReady(main);
+$(main);

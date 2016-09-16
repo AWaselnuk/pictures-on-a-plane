@@ -1,5 +1,87 @@
-// import { log, domReady } from 'utilities';
+// import { log } from 'utilities';
 // import { getSampleHAR } from 'sample-data';
+
+function main() {
+  const $body = $('body');
+  const $runButton = $('#run');
+  const $sections = $('.section');
+  const $scrollText = $('.scroll-text');
+  const $imagesContainer = $('#images');
+  const HARTestData = getSampleHAR();
+  const entries = HARTestData.entries;
+  const images = entries
+    .filter((entry) => isImageType(entry))
+    .map((entry) => toCategorizedImage(entry));
+
+  const categoryData =
+    CATEGORIES.map((category) => {
+      const imagesForCategory = images.filter((image) => image.category === category);
+
+      return {
+        label: category,
+        imageCount: imagesForCategory.length,
+        images: imagesForCategory
+      };
+    });
+
+  const imagesHTML =
+    categoryData.map((category) => {
+      if (category.imageCount === 0) {
+        return emptyCategoryHTML(category);
+      } else {
+        return categoryHTML(category);
+      }
+    });
+
+  function transitionToSection(sectionName) {
+    $sections.addClass('hidden');
+    $sections.filter(`#${sectionName}`).removeClass('hidden');
+  }
+
+  function animateScrollText() {
+    const $scrollTextDuration =
+      $scrollText.find('.scroll-text__item').length * 1.2 * 1000 + 1000;
+
+    const promise = new Promise((resolve, reject) => {
+      $scrollText.addClass('js-animate');
+      window.setTimeout(() => resolve(), $scrollTextDuration);
+    });
+
+    return promise;
+  }
+
+  function setCategory(category) {
+    $body.attr('class', `active-category-${category}`);
+  }
+
+  function updateImageCounts(categoryData) {
+    categoryData.forEach((category) => {
+      $(`.category-item__badge--${category.label}`).html(category.imageCount);
+    });
+  }
+
+  $body.on('click', '.category-item', (evt) => {
+    setCategory($(evt.target).data('category'));
+  });
+
+  $runButton.on('click', () => {
+    // HAR spec http://www.softwareishard.com/blog/har-12-spec/
+    // chrome.devtools.network.getHAR((harLog) => {
+    //   log(getSampleHAR());
+    // });
+
+    // Transition to results screen
+    transitionToSection('sectionLoading');
+    animateScrollText()
+      .then(() => transitionToSection('sectionResults'));
+
+    // TODO: below steps to here
+  });
+
+  $imagesContainer.html(imagesHTML);
+  updateImageCounts(categoryData);
+  setCategory('scooter');
+}
 
 const CATEGORIES = [
   'scooter',
@@ -92,94 +174,9 @@ function categoryHTML(category) {
   </ol>`;
 }
 
-function main() {
-  const $body = $('body');
-  const $runButton = $('#run');
-  const $sections = $('.section');
-  const $scrollText = $('.scroll-text');
-  const $imagesContainer = $('#images');
-  const HARTestData = getSampleHAR();
-  const entries = HARTestData.entries;
-  const images = entries
-    .filter((entry) => isImageType(entry))
-    .map((entry) => toCategorizedImage(entry));
 
-  function transitionToSection(sectionName) {
-    $sections.addClass('hidden');
-    $sections.filter(`#${sectionName}`).removeClass('hidden');
-  }
-
-  function animateScrollText() {
-    const $scrollTextDuration =
-      $scrollText.find('.scroll-text__item').length * 1.2 * 1000 + 1000;
-
-    const promise = new Promise((resolve, reject) => {
-      $scrollText.addClass('js-animate');
-      window.setTimeout(() => resolve(), $scrollTextDuration);
-    });
-
-    return promise;
-  }
-
-  function setCategory(category) {
-    $body.attr('class', `active-category-${category}`);
-  }
-
-  function updateImageCounts(categoryData) {
-    categoryData.forEach((category) => {
-      $(`.category-item__badge--${category.label}`).html(category.imageCount);
-    });
-  }
-
-  $body.on('click', '.category-item', (evt) => {
-    setCategory($(evt.target).data('category'));
-  });
-
-  $runButton.on('click', () => {
-    // HAR spec http://www.softwareishard.com/blog/har-12-spec/
-    // chrome.devtools.network.getHAR((harLog) => {
-    //   log(getSampleHAR());
-    // });
-
-    // Transition to results screen
-    transitionToSection('sectionLoading');
-    animateScrollText()
-      .then(() => transitionToSection('sectionResults'));
-  });
-
-  // Spit out HAR data
-  log(images);
-
-  const categoryData =
-    CATEGORIES.map((category) => {
-      const imagesForCategory = images.filter((image) => image.category === category);
-
-      return {
-        label: category,
-        imageCount: imagesForCategory.length,
-        images: imagesForCategory
-      };
-    })
-
-  log(categoryData);
-
-  const imagesHTML =
-    categoryData.map((category) => {
-      if (category.imageCount === 0) {
-        return emptyCategoryHTML(category);
-      } else {
-        return categoryHTML(category);
-      }
-    });
-
-  $imagesContainer.html(imagesHTML);
-
-  updateImageCounts(categoryData);
-
-  setCategory('scooter');
-}
 
 // Init
 
-domReady(main);
+$(main);
 
