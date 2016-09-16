@@ -14,7 +14,10 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   margin-bottom: 2rem; }
 
-h1, h2 {
+h1 {
+  font-size: 2rem; }
+
+h2 {
   font-size: 1.8rem; }
 
 p {
@@ -89,6 +92,13 @@ button:hover {
 .main__content {
   padding: 1rem; }
 
+.section-intro {
+  background-size: cover;
+  background-position: center center;
+  background-image: url("../images/hero.jpg");
+  color: #fff;
+  font-size: 1.8rem; }
+
 .btn {
   background-color: #E55627;
   color: #fff;
@@ -110,7 +120,7 @@ button:hover {
   transform: translate(-50%, -50%); }
 
 .centered__content--intro {
-  max-width: 400px; }
+  max-width: 600px; }
 
 .scroll-text.js-animate .scroll-text__item {
   animation-name: scroll-text;

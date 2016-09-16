@@ -76,11 +76,10 @@ function main() {
       .then(() => transitionToSection('sectionResults'));
 
     // TODO: below steps to here
+    $imagesContainer.html(imagesHTML);
+    updateImageCounts(categoryData);
+    setCategory('scooter');
   });
-
-  $imagesContainer.html(imagesHTML);
-  updateImageCounts(categoryData);
-  setCategory('scooter');
 }
 
 const CATEGORIES = [

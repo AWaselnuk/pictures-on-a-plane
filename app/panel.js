@@ -65,7 +65,7 @@ function main() {
     });
   }
 
-  $body.on('click', '[data-category]', function (evt) {
+  $body.on('click', '.category-item', function (evt) {
     setCategory($(evt.target).data('category'));
   });
 
@@ -82,11 +82,10 @@ function main() {
     });
 
     // TODO: below steps to here
+    $imagesContainer.html(imagesHTML);
+    updateImageCounts(categoryData);
+    setCategory('scooter');
   });
-
-  $imagesContainer.html(imagesHTML);
-  updateImageCounts(categoryData);
-  setCategory('scooter');
 }
 
 var CATEGORIES = ['scooter', 'bicycle', 'car', 'train', 'airplane', 'spaceship', 'teleportation'];
