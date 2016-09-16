@@ -5,21 +5,47 @@
 
 // HAR Entry -> Boolean
 function isImageType(HARentry) {
-  return HARentry.response
-    && (
-      HARentry.response.content.mimeType == 'image/jpeg'
-      || HARentry.response.content.mimeType == 'image/jpeg'
-    )
+  if (HARentry.response == null) {
+    return false;
+  }
+  const mimeType = HARentry.response.content.mimeType;
+  return (
+    mimeType == 'image/jpeg'
+    || mimeType == 'image/png'
+    || mimeType == 'image/gif'
+  )
 }
 
-// HAR Entry -> Image
-function toImage (HARentry) {
+// HAR Entry for image -> CategorizedImage
+function toCategorizedImage(HARentry) {
+  const imageSize = HARentry.response.content.size;
+
   return {
     time: HARentry.time,
     url: HARentry.request.url,
-    size: HARentry.response.content.size,
+    size: imageSize,
+    category: categoryForImageSize(imageSize),
     mimeType: HARentry.response.content.mimeType
   };
+}
+
+// Image size in bytes -> Category
+function categoryForImageSize(imageSize) {
+  if (imageSize < 5000) {
+    return 'teleportation';
+  } else if (imageSize < 10000) {
+    return 'spaceship';
+  } else if (imageSize < 30000) {
+    return 'airplane';
+  } else if (imageSize < 50000) {
+    return 'train'
+  } else if (imageSize < 75000) {
+    return 'car';
+  } else if (imageSize < 150000) {
+    return 'bicycle'
+  } else {
+    return 'scooter';
+  }
 }
 
 function main() {
@@ -31,7 +57,7 @@ function main() {
   const entries = HARTestData.entries;
   const images = entries
     .filter((entry) => isImageType(entry))
-    .map((entry) => toImage(entry));
+    .map((entry) => toCategorizedImage(entry));
 
   function transitionToSection(sectionName) {
     $sections.addClass('hidden');
