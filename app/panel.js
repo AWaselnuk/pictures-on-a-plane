@@ -78,7 +78,7 @@ function main() {
   }
 
   function imageToLi(image) {
-    return '<li>' + image.url + ', ' + image.size + ', ' + image.category + '</li>';
+    return '<li>' + image.size + ' | ' + image.url + ', ' + image.category + '</li>';
   }
 
   $runButton.on('click', function () {
@@ -100,6 +100,8 @@ function main() {
   var imagesHTML = CATEGORIES.map(function (category) {
     return '<ol class="list-reset category-' + category + '">\n        ' + images.filter(function (image) {
       return image.category === category;
+    }).sort(function (a, b) {
+      return b.size - a.size;
     }).map(imageToLi).join("\n") + '\n      </ol>';
   });
 
