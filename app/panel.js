@@ -65,7 +65,7 @@ function main() {
     });
   }
 
-  $body.on('click', '.category-item', function (evt) {
+  $body.on('click', '[data-category]', function (evt) {
     setCategory($(evt.target).data('category'));
   });
 
