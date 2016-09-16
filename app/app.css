@@ -155,17 +155,39 @@ button:hover {
   .category-item:hover {
     background-color: #CCC9C6; }
 
+.category-item__content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem; }
+
 .category-item__badge {
   background-color: #E55627;
   color: #fff;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0;
+  right: 2rem;
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
   font-size: 1.1rem;
   text-align: center; }
+
+.category-image {
+  display: block;
+  margin-bottom: 1rem;
+  height: 80px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.2s ease-out; }
+
+.category-info-container {
+  padding-left: 1rem; }
+
+.category-info-title {
+  margin-bottom: 1rem; }
 
 .has-category {
   display: none; }
@@ -181,36 +203,57 @@ button:hover {
   display: block; }
 .active-category-scooter .category-item--scooter {
   background-color: #CCC9C6; }
+.active-category-scooter .category-image--scooter {
+  transform: translateX(0);
+  opacity: 1; }
 
 .active-category-bicycle .has-category--bicycle {
   display: block; }
 .active-category-bicycle .category-item--bicycle {
   background-color: #CCC9C6; }
+.active-category-bicycle .category-image--bicycle {
+  transform: translateX(0);
+  opacity: 1; }
 
 .active-category-car .has-category--car {
   display: block; }
 .active-category-car .category-item--car {
   background-color: #CCC9C6; }
+.active-category-car .category-image--car {
+  transform: translateX(0);
+  opacity: 1; }
 
 .active-category-train .has-category--train {
   display: block; }
 .active-category-train .category-item--train {
   background-color: #CCC9C6; }
+.active-category-train .category-image--train {
+  transform: translateX(0);
+  opacity: 1; }
 
 .active-category-airplane .has-category--airplane {
   display: block; }
 .active-category-airplane .category-item--airplane {
   background-color: #CCC9C6; }
+.active-category-airplane .category-image--airplane {
+  transform: translateX(0);
+  opacity: 1; }
 
 .active-category-spaceship .has-category--spaceship {
   display: block; }
 .active-category-spaceship .category-item--spaceship {
   background-color: #CCC9C6; }
+.active-category-spaceship .category-image--spaceship {
+  transform: translateX(0);
+  opacity: 1; }
 
 .active-category-teleportation .has-category--teleportation {
   display: block; }
 .active-category-teleportation .category-item--teleportation {
   background-color: #CCC9C6; }
+.active-category-teleportation .category-image--teleportation {
+  transform: translateX(0);
+  opacity: 1; }
 
 @keyframes scroll-text {
   0% {

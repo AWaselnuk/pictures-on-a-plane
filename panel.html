@@ -9,7 +9,7 @@
     <script src="app/utilities.js"></script>
     <script src="app/panel.js"></script>
   </head>
-  <body id="main">
+  <body>
     <section id="sectionIntro" class="section centered hidden">
       <div class="centered__content centered__content--intro text-center">
         <h1>Pictures on a plane</h1>
@@ -35,63 +35,127 @@
         <h2 class="visually-hidden">Image categories</h2>
         <ul class="category list-reset">
           <li class="category-item category-item--scooter" data-category="scooter">
-            <div class="category-item__badge category-item__badge--scooter">1</div>
-            Scooter
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--scooter"></div>
+              Scooter
+            </div>
           </li>
           <li class="category-item category-item--bicycle" data-category="bicycle">
-            <div class="category-item__badge category-item__badge--bicycle">1</div>
-            Bicycle
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--bicycle"></div>
+              Bicycle
+            </div>
           </li>
           <li class="category-item category-item--car" data-category="car">
-            <div class="category-item__badge category-item__badge--car">1</div>
-            Car
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--car"></div>
+              Car
+            </div>
           </li>
           <li class="category-item category-item--train" data-category="train">
-            <div class="category-item__badge category-item__badge--train">1</div>
-            Train
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--train"></div>
+              Train
+            </div>
           </li>
           <li class="category-item category-item--airplane" data-category="airplane">
-            <div class="category-item__badge category-item__badge--airplane">1</div>
-            Airplane
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--airplane"></div>
+              Airplane
+            </div>
           </li>
           <li class="category-item category-item--spaceship" data-category="spaceship">
-            <div class="category-item__badge category-item__badge--spaceship">1</div>
-            Spaceship
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--spaceship"></div>
+              Spaceship
+            </div>
           </li>
           <li class="category-item category-item--teleportation" data-category="teleportation">
-            <div class="category-item__badge category-item__badge--teleportation">1</div>
-            Teleportation
+            <div class="category-item__content">
+              <div class="category-item__badge category-item__badge--teleportation"></div>
+              Teleportation
+            </div>
           </li>
       </div>
+
       <div class="main flex-container">
         <div class="main__info">
           <div class="has-category has-category--scooter">
-            <h2 class="info-title">Scooter</h2>
-            <p>Scooters do this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--scooter" src="images/scooter.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Scooter</h2>
+                <p>Scooters do this</p>
+              </div>
+            </div>
           </div>
           <div class="has-category has-category--bicycle">
-            <h2 class="info-title">Bicycle</h2>
-            <p>Bicycles do this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--bicycle" src="images/bicycle.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Bicycle</h2>
+                <p>bicycles do this</p>
+              </div>
+            </div>
           </div>
           <div class="has-category has-category--car">
-            <h2 class="info-title">Cars</h2>
-            <p>Cars do this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--car" src="images/car.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Car</h2>
+                <p>Cars do this</p>
+              </div>
+            </div>
           </div>
           <div class="has-category has-category--train">
-            <h2 class="info-title">Trains</h2>
-            <p>Trains do this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--train" src="images/train.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Train</h2>
+                <p>Trains do this</p>
+              </div>
+            </div>
           </div>
           <div class="has-category has-category--airplane">
-            <h2 class="info-title">Airplanes</h2>
-            <p>Airplanes do this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--airplane" src="images/airplane.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Airplane</h2>
+                <p>Airplanes do this</p>
+              </div>
+            </div>
           </div>
           <div class="has-category has-category--spaceship">
-            <h2 class="info-title">Spaceships</h2>
-            <p>Spaceships do this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--spaceship" src="images/spaceship.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Spaceship</h2>
+                <p>Spaceship do this</p>
+              </div>
+            </div>
           </div>
           <div class="has-category has-category--teleportation">
-            <h2 class="info-title">Teleportation</h2>
-            <p>Teleportation does this</p>
+            <div class="flex-container">
+              <div class="category-image-container">
+                <img class="category-image category-image--teleportation" src="images/teleportation.svg">
+              </div>
+              <div class="category-info-container">
+                <h2 class="category-info-title">Teleportation</h2>
+                <p>Teleportation do this</p>
+              </div>
+            </div>
           </div>
         </div>
 

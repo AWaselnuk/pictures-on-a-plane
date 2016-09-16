@@ -235,16 +235,44 @@ $scrollTextAnimationDuration: 1.2s;
   }
 }
 
+$categoryBadgeSize: $spacing * 2;
+
+.category-item__content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: $categoryBadgeSize;
+  line-height: $categoryBadgeSize;
+}
+
 .category-item__badge {
   @include bg-color-main;
   position: absolute;
-  top: $spacing;
-  right: $spacing;
-  width: $spacing * 2;
-  height: $spacing * 2;
-  line-height: $spacing * 2;
+  top: 0;
+  right: $spacing * 2;
+  width: $categoryBadgeSize;
+  height: $categoryBadgeSize;
+  line-height: $categoryBadgeSize;
   font-size: $font-size-small;
   text-align: center;
+}
+
+.category-image {
+  display: block;
+  margin-bottom: $spacing;
+  height: 80px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all $transition-timing ease-out;
+}
+
+.category-info-container {
+  padding-left: $spacing;
+}
+
+.category-info-title {
+  margin-bottom: $base-line-height / 2;
 }
 
 .has-category {
@@ -271,6 +299,11 @@ $categories: scooter, bicycle, car, train, airplane, spaceship, teleportation;
 
     .category-item--#{$category} {
       background-color: color-grey(light);
+    }
+
+    .category-image--#{$category} {
+      transform: translateX(0);
+      opacity: 1;
     }
   }
 }
