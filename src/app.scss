@@ -217,8 +217,7 @@ $scrollTextAnimationDuration: 1.2s;
     cursor: pointer;
   }
 
-  &:hover,
-  &.active {
+  &:hover {
     background-color: color-grey(light);
   }
 }
@@ -233,6 +232,24 @@ $scrollTextAnimationDuration: 1.2s;
   line-height: $spacing * 2;
   font-size: $font-size-small;
   text-align: center;
+}
+
+.has-category {
+  display: none;
+}
+
+$categories: scooter, bicycle, car, train, airplane, spaceship, teleportation;
+
+@each $category in $categories {
+  .active-category-#{$category} {
+    .has-category--#{$category} {
+      display: block;
+    }
+
+    .category-item--#{$category} {
+      background-color: color-grey(light);
+    }
+  }
 }
 
 // Animations

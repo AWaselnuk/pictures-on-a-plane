@@ -47,6 +47,7 @@ function categoryForImageSize(imageSize) {
 }
 
 function main() {
+  var $body = $('body');
   var $runButton = $('#run');
   var $sections = $('.section');
   var $scrollText = $('.scroll-text');
@@ -81,6 +82,14 @@ function main() {
     return '<li>' + image.size + ' | ' + image.url + ', ' + image.category + '</li>';
   }
 
+  function setCategory(category) {
+    $body.attr('class', 'active-category-' + category);
+  }
+
+  $body.on('click', '.category-item', function (evt) {
+    setCategory($(evt.target).data('category'));
+  });
+
   $runButton.on('click', function () {
     // HAR spec http://www.softwareishard.com/blog/har-12-spec/
     // chrome.devtools.network.getHAR((harLog) => {
@@ -98,14 +107,14 @@ function main() {
   log(images);
 
   var imagesHTML = CATEGORIES.map(function (category) {
-    return '<ol class="list-reset category-' + category + '">\n        ' + images.filter(function (image) {
+    return '<ol class="list-reset has-category has-category--' + category + '">\n        ' + images.filter(function (image) {
       return image.category === category;
     }).sort(function (a, b) {
       return b.size - a.size;
     }).map(imageToLi).join("\n") + '\n      </ol>';
   });
-
   $imagesContainer.html(imagesHTML);
+  setCategory('scooter');
 }
 
 // Init

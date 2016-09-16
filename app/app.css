@@ -142,7 +142,7 @@ button:hover {
     border-top: none; }
   .category-item:hover {
     cursor: pointer; }
-  .category-item:hover, .category-item.active {
+  .category-item:hover {
     background-color: #CCC9C6; }
 
 .category-item__badge {
@@ -156,6 +156,44 @@ button:hover {
   line-height: 2rem;
   font-size: 1.2rem;
   text-align: center; }
+
+.has-category {
+  display: none; }
+
+.active-category-scooter .has-category--scooter {
+  display: block; }
+.active-category-scooter .category-item--scooter {
+  background-color: #CCC9C6; }
+
+.active-category-bicycle .has-category--bicycle {
+  display: block; }
+.active-category-bicycle .category-item--bicycle {
+  background-color: #CCC9C6; }
+
+.active-category-car .has-category--car {
+  display: block; }
+.active-category-car .category-item--car {
+  background-color: #CCC9C6; }
+
+.active-category-train .has-category--train {
+  display: block; }
+.active-category-train .category-item--train {
+  background-color: #CCC9C6; }
+
+.active-category-airplane .has-category--airplane {
+  display: block; }
+.active-category-airplane .category-item--airplane {
+  background-color: #CCC9C6; }
+
+.active-category-spaceship .has-category--spaceship {
+  display: block; }
+.active-category-spaceship .category-item--spaceship {
+  background-color: #CCC9C6; }
+
+.active-category-teleportation .has-category--teleportation {
+  display: block; }
+.active-category-teleportation .category-item--teleportation {
+  background-color: #CCC9C6; }
 
 @keyframes scroll-text {
   0% {

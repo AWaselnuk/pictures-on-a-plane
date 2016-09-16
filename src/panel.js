@@ -57,6 +57,7 @@ function categoryForImageSize(imageSize) {
 }
 
 function main() {
+  const $body = $('body');
   const $runButton = $('#run');
   const $sections = $('.section');
   const $scrollText = $('.scroll-text');
@@ -88,6 +89,14 @@ function main() {
     return `<li>${image.size} | ${image.url}, ${image.category}</li>`;
   }
 
+  function setCategory(category) {
+    $body.attr('class', `active-category-${category}`);
+  }
+
+  $body.on('click', '.category-item', (evt) => {
+    setCategory($(evt.target).data('category'));
+  });
+
   $runButton.on('click', () => {
     // HAR spec http://www.softwareishard.com/blog/har-12-spec/
     // chrome.devtools.network.getHAR((harLog) => {
@@ -98,8 +107,6 @@ function main() {
     transitionToSection('sectionLoading');
     animateScrollText()
       .then(() => transitionToSection('sectionResults'));
-
-
   });
 
   // Spit out HAR data
@@ -107,7 +114,7 @@ function main() {
 
   const imagesHTML =
     CATEGORIES.map((category) => {
-      return `<ol class="list-reset category-${category}">
+      return `<ol class="list-reset has-category has-category--${category}">
         ${images
             .filter((image) => image.category === category)
             .sort((a, b) => b.size - a.size)
@@ -116,8 +123,8 @@ function main() {
         }
       </ol>`;
     });
-
   $imagesContainer.html(imagesHTML);
+  setCategory('scooter');
 }
 
 // Init
