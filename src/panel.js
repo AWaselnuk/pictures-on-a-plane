@@ -1,7 +1,15 @@
 // import { log, domReady } from 'utilities';
 // import { getSampleHAR } from 'sample-data';
 
-// Main
+const CATEGORIES = [
+  'scooter',
+  'bicycle',
+  'car',
+  'train',
+  'airplane',
+  'spaceship',
+  'teleportation'
+];
 
 // HAR Entry -> Boolean
 function isImageType(HARentry) {
@@ -13,7 +21,7 @@ function isImageType(HARentry) {
     mimeType == 'image/jpeg'
     || mimeType == 'image/png'
     || mimeType == 'image/gif'
-  )
+  );
 }
 
 // HAR Entry for image -> CategorizedImage
@@ -76,6 +84,10 @@ function main() {
     return promise;
   }
 
+  function imageToLi(image) {
+    return `<li>${image.url}, ${image.size}, ${image.category}</li>`;
+  }
+
   $runButton.on('click', () => {
     // HAR spec http://www.softwareishard.com/blog/har-12-spec/
     // chrome.devtools.network.getHAR((harLog) => {
@@ -92,7 +104,19 @@ function main() {
 
   // Spit out HAR data
   log(images);
-  $imagesContainer.html(`<pre><code>${JSON.stringify(images, null, 2)}</code></pre>`);
+
+  const imagesHTML =
+    CATEGORIES.map((category) => {
+      return `<ol class="list-reset category-${category}">
+        ${images
+            .filter((image) => image.category === category)
+            .map(imageToLi)
+            .join("\n")
+        }
+      </ol>`;
+    });
+
+  $imagesContainer.html(imagesHTML);
 }
 
 // Init

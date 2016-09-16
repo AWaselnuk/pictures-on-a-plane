@@ -3,7 +3,7 @@
 // import { log, domReady } from 'utilities';
 // import { getSampleHAR } from 'sample-data';
 
-// Main
+var CATEGORIES = ['scooter', 'bicycle', 'car', 'train', 'airplane', 'spaceship', 'teleportation'];
 
 // HAR Entry -> Boolean
 function isImageType(HARentry) {
@@ -77,6 +77,10 @@ function main() {
     return promise;
   }
 
+  function imageToLi(image) {
+    return '<li>' + image.url + ', ' + image.size + ', ' + image.category + '</li>';
+  }
+
   $runButton.on('click', function () {
     // HAR spec http://www.softwareishard.com/blog/har-12-spec/
     // chrome.devtools.network.getHAR((harLog) => {
@@ -92,7 +96,14 @@ function main() {
 
   // Spit out HAR data
   log(images);
-  $imagesContainer.html('<pre><code>' + JSON.stringify(images, null, 2) + '</code></pre>');
+
+  var imagesHTML = CATEGORIES.map(function (category) {
+    return '<ol class="list-reset category-' + category + '">\n        ' + images.filter(function (image) {
+      return image.category === category;
+    }).map(imageToLi).join("\n") + '\n      </ol>';
+  });
+
+  $imagesContainer.html(imagesHTML);
 }
 
 // Init
