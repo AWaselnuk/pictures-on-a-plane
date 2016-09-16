@@ -11,6 +11,8 @@ const CATEGORIES = [
   'teleportation'
 ];
 
+const REGULAR_3G_BYTES_PER_SECOND = 750e3;
+
 // HAR Entry -> Boolean
 function isImageType(HARentry) {
   if (HARentry.response == null) {
@@ -34,9 +36,11 @@ function toCategorizedImage(HARentry) {
 
   return {
     time: HARentry.time,
+    mobileTime: (imageSize / REGULAR_3G_BYTES_PER_SECOND * 1000).toFixed(2),
     url: HARentry.request.url,
     path: path,
     size: imageSize,
+    kbSize: imageSize / 1000,
     category: categoryForImageSize(imageSize),
     mimeType: HARentry.response.content.mimeType
   };
@@ -64,7 +68,8 @@ function categoryForImageSize(imageSize) {
 // Image -> HTML
 function imageHTML(image) {
   return `<li class="image-item" data-image-url="${image.url}">
-    <b class="inline-title">SIZE</b> ${image.size}<br>
+    <b class="inline-title">SIZE</b> ${image.kbSize} kb<br>
+    <b class="inline-title">TIME (3G)</b> ${image.mobileTime} ms<br>
     <b class="inline-title">URL</b> ${image.path}
   </li>`;
 }
